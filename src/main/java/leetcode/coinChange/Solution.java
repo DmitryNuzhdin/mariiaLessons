@@ -1,38 +1,46 @@
 package leetcode.coinChange;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Solution {
+    int[] coins;
+    Map<Integer, Integer> cache = new HashMap<>();
+
+
     public int coinChange (int[] coins, int amount) {
-        if (amount == 0) { return 0;}
-        Arrays.sort(coins);
-        int currentRem = 0;
-        int currentSum = amount;
-        int minOfNumCoins = amount + 1;
-        int currentMinOfNumCoins = 0;
-        for (int i = coins.length - 1; i >= 0; i--) {
-            if (coins[i] > amount) {continue;}
-            for (int n = i; n >= 0; n--) {
-                currentRem = currentSum % coins[n];
-                if (currentRem < currentSum) {
-                    currentMinOfNumCoins += currentSum / coins[n];
-                    currentSum = currentRem;
-                }
-                if (currentSum == 0) {
-                    break;
-                }
-            }
-            if (currentSum != 0) {
-                currentMinOfNumCoins = 0;
-            } else if (currentMinOfNumCoins < minOfNumCoins) {
-                minOfNumCoins = currentMinOfNumCoins;
-            }
-            currentSum = amount;
+        this.coins = coins;
+
+        cache.put(0, 0);
+
+        for (Integer coin : coins) {
+            cache.put(coin, 1);
         }
-        if (minOfNumCoins == amount + 1) {
+
+        return f(amount);
+    }
+
+    public int f(int amount) {
+        if (amount < 0)
             return -1;
-        } else {
-            return minOfNumCoins;
+        else if (cache.containsKey(amount))
+            return cache.get(amount);
+        else {
+            Optional<Integer> minOpt = Arrays.stream(coins)
+                    .boxed()
+                    .map(coin -> f(amount - coin))
+                    .filter(i -> i != -1)
+                    .map(i -> i + 1)
+                    .min((i1, i2) -> i1.compareTo(i2));
+
+            int ans = minOpt.orElse(-1);
+
+            cache.put(amount, ans);
+
+            return ans;
         }
+    }
+
+    public static void main(String[] args) {
+
     }
 }
