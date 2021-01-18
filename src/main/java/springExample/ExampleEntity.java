@@ -24,4 +24,12 @@ public class ExampleEntity {
                 ", price=" + price +
                 '}';
     }
+
+    public long getOrderId() {
+        return orderId;
+    }
+
+    public double getPrice() {
+        return price;
+    }
 }
