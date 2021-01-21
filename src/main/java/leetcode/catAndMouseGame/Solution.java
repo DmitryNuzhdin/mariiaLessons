@@ -1,12 +1,10 @@
 package leetcode.catAndMouseGame;
 
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.ArrayDeque;
+import java.util.*;
 
 class Solution {
     public HashMap<GameState, Integer> stateDictionary = new HashMap<>();
-    public ArrayDeque<GameState> gameStateToAnalise = new ArrayDeque<>();
+    public Deque<GameState> gameStateToAnalise = new LinkedList<>();
 
     public int catMouseGame(int[][] graph) {
         for (int i = 1; i < graph.length; i++) {
