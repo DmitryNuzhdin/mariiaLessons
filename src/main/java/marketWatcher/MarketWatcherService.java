@@ -1,11 +1,5 @@
-package springFirstTry.a;
+package marketWatcher;
 
-import org.springframework.stereotype.Component;
-import springFirstTry.a.ESIMarketDataReader;
-import springFirstTry.a.MarketVolumesRepository;
-import springFirstTry.a.OrderAggregator;
-
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -22,6 +16,7 @@ public class MarketWatcherService {
         this.esiMarketDataReader = esiMarketDataReader;
         this.marketVolumesRepository = marketVolumesRepository;
     }
+
 
     void watchTypeId(long typeId){
 

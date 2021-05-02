@@ -1,25 +1,23 @@
-package springFirstTry.a.dto;
+package marketWatcher.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 public class ESIMarketOrderDTO {
-    long orderId;
-    double price;
-    boolean isBuyOrder;
+    public Long orderId;
+    public double price;
+    public boolean isBuyOrder;
     int duration;
     long locationId;
     int minVolume;
     String range;
     long systemId;
-    int typeId;
-    int volumeTotal;
-    int volumeRemain;
+    public int typeId;
+    public int volumeTotal;
+    public Long volumeRemain;
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
             pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'",
@@ -28,7 +26,7 @@ public class ESIMarketOrderDTO {
 
     @JsonCreator
     public ESIMarketOrderDTO(
-            @JsonProperty("order_id") long  orderId,
+            @JsonProperty("order_id") Long  orderId,
             @JsonProperty("price") double price,
             @JsonProperty("is_buy_order") boolean isBuyOrder,
             @JsonProperty("duration") int duration,
@@ -38,7 +36,7 @@ public class ESIMarketOrderDTO {
             @JsonProperty("system_id") long systemId,
             @JsonProperty("type_id") int typeId,
             @JsonProperty("volume_total") int volumeTotal,
-            @JsonProperty("volume_remain") int volumeRemain,
+            @JsonProperty("volume_remain") Long volumeRemain,
             @JsonProperty("issued") LocalDateTime issued) {
         this.orderId = orderId;
         this.price = price;
@@ -55,12 +53,12 @@ public class ESIMarketOrderDTO {
     }
 
     @JsonProperty("order_id")
-    public long getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
     @JsonProperty("order_id")
-    public void setOrderId(long orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 
@@ -155,12 +153,12 @@ public class ESIMarketOrderDTO {
     }
 
     @JsonProperty("volume_remain")
-    public int getVolumeRemain() {
+    public Long getVolumeRemain() {
         return volumeRemain;
     }
 
     @JsonProperty("volume_remain")
-    public void setVolumeRemain(int volumeRemain) {
+    public void setVolumeRemain(Long volumeRemain) {
         this.volumeRemain = volumeRemain;
     }
 

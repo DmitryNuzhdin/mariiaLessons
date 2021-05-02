@@ -1,4 +1,4 @@
-package springFirstTry.a;
+package marketWatcher;
 
 public class RESTController {
 }
